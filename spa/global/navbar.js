@@ -20,9 +20,9 @@ import {
 	set_data,
 	space,
 	text
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import { onMount } from "svelte";
+import { onMount } from '../web_modules/svelte/index.mjs';
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
@@ -51,7 +51,7 @@ function create_if_block_1(ctx) {
 		},
 		h() {
 			attr(a, "class", "block md:inline-flex px-2 py-1");
-			attr(a, "href", "projects");
+			attr(a, "href", "projs");
 		},
 		m(target, anchor) {
 			insert(target, a, anchor);

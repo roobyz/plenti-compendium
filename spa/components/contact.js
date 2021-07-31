@@ -24,10 +24,9 @@ import {
 	text,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import Aside from "../components/aside.svelte";
-import { onMount } from "svelte";
+import Aside from '../components/aside.js';
 
 function create_fragment(ctx) {
 	let section;
@@ -277,7 +276,7 @@ function create_fragment(ctx) {
 		},
 		h() {
 			attr(div0, "class", "w-0 md:w-1/12 xl:w-2/12");
-			attr(h2, "class", "header mt-0 mb-6");
+			attr(h2, "class", "header text-2xl mt-0 mb-6");
 			attr(p, "class", "mb-10");
 			attr(div1, "class", "");
 			attr(label0, "class", "block uppercase tracking-wide header mb-2");

@@ -14,7 +14,7 @@ import {
 	transition_in,
 	transition_out,
 	update_slot
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
 const get_default_slot_changes = dirty => ({ hovering: dirty & /*hovering*/ 1 });
 const get_default_slot_context = ctx => ({ hovering: /*hovering*/ ctx[0] });

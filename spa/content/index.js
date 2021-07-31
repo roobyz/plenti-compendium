@@ -21,10 +21,10 @@ import {
 	space,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import Featured from "../components/featured.svelte";
-import Sections from "../components/sections.svelte";
+import Featured from '../components/featured.js';
+import Sections from '../components/sections.js';
 
 function create_if_block_1(ctx) {
 	let div;
@@ -103,7 +103,7 @@ function create_if_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(div, "class", "w-full row mt-16");
+			attr(div, "class", "w-full row mt-6 sm:mt-16");
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);

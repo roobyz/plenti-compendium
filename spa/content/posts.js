@@ -22,24 +22,24 @@ import {
 	text,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import Aside from "../components/aside.svelte";
+import Aside from '../components/aside.js';
 
 // Ogp (Open Graph Protocol): SEO for social networks
-import Ogp from "../components/openGraph.svelte";
+import Ogp from '../components/openGraph.js';
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[16] = list[i];
-	child_ctx[18] = i;
+	child_ctx[17] = list[i];
+	child_ctx[19] = i;
 	return child_ctx;
 }
 
 function get_each_context_1(ctx, list, i) {
 	const child_ctx = ctx.slice();
-	child_ctx[19] = list[i];
-	child_ctx[18] = i;
+	child_ctx[20] = list[i];
+	child_ctx[19] = i;
 	return child_ctx;
 }
 
@@ -66,11 +66,11 @@ function create_if_block_1(ctx) {
 // (64:12) {#each categories as catg, i}
 function create_each_block_1(ctx) {
 	let a;
-	let t0_value = /*catg*/ ctx[19] + "";
+	let t0_value = /*catg*/ ctx[20] + "";
 	let t0;
 	let t1;
 	let a_href_value;
-	let if_block = /*i*/ ctx[18] < /*categories*/ ctx[8].length - 1 && create_if_block_1(ctx);
+	let if_block = /*i*/ ctx[19] < /*categories*/ ctx[9].length - 1 && create_if_block_1(ctx);
 
 	return {
 		c() {
@@ -90,7 +90,7 @@ function create_each_block_1(ctx) {
 			this.h();
 		},
 		h() {
-			attr(a, "href", a_href_value = "categories/" + /*catg*/ ctx[19]);
+			attr(a, "href", a_href_value = "categories/" + /*catg*/ ctx[20]);
 			attr(a, "class", "ml-1");
 		},
 		m(target, anchor) {
@@ -100,9 +100,9 @@ function create_each_block_1(ctx) {
 			append(a, t1);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*categories*/ 256 && t0_value !== (t0_value = /*catg*/ ctx[19] + "")) set_data(t0, t0_value);
+			if (dirty & /*categories*/ 512 && t0_value !== (t0_value = /*catg*/ ctx[20] + "")) set_data(t0, t0_value);
 
-			if (/*i*/ ctx[18] < /*categories*/ ctx[8].length - 1) {
+			if (/*i*/ ctx[19] < /*categories*/ ctx[9].length - 1) {
 				if (if_block) {
 					
 				} else {
@@ -115,7 +115,7 @@ function create_each_block_1(ctx) {
 				if_block = null;
 			}
 
-			if (dirty & /*categories*/ 256 && a_href_value !== (a_href_value = "categories/" + /*catg*/ ctx[19])) {
+			if (dirty & /*categories*/ 512 && a_href_value !== (a_href_value = "categories/" + /*catg*/ ctx[20])) {
 				attr(a, "href", a_href_value);
 			}
 		},
@@ -149,11 +149,11 @@ function create_if_block(ctx) {
 // (72:12) {#each tags as tag, i}
 function create_each_block(ctx) {
 	let a;
-	let t0_value = /*tag*/ ctx[16] + "";
+	let t0_value = /*tag*/ ctx[17] + "";
 	let t0;
 	let t1;
 	let a_href_value;
-	let if_block = /*i*/ ctx[18] < /*tags*/ ctx[9].length - 1 && create_if_block(ctx);
+	let if_block = /*i*/ ctx[19] < /*tags*/ ctx[10].length - 1 && create_if_block(ctx);
 
 	return {
 		c() {
@@ -173,7 +173,7 @@ function create_each_block(ctx) {
 			this.h();
 		},
 		h() {
-			attr(a, "href", a_href_value = "tags/" + /*tag*/ ctx[16]);
+			attr(a, "href", a_href_value = "tags/" + /*tag*/ ctx[17]);
 			attr(a, "class", "ml-1");
 		},
 		m(target, anchor) {
@@ -183,9 +183,9 @@ function create_each_block(ctx) {
 			append(a, t1);
 		},
 		p(ctx, dirty) {
-			if (dirty & /*tags*/ 512 && t0_value !== (t0_value = /*tag*/ ctx[16] + "")) set_data(t0, t0_value);
+			if (dirty & /*tags*/ 1024 && t0_value !== (t0_value = /*tag*/ ctx[17] + "")) set_data(t0, t0_value);
 
-			if (/*i*/ ctx[18] < /*tags*/ ctx[9].length - 1) {
+			if (/*i*/ ctx[19] < /*tags*/ ctx[10].length - 1) {
 				if (if_block) {
 					
 				} else {
@@ -198,7 +198,7 @@ function create_each_block(ctx) {
 				if_block = null;
 			}
 
-			if (dirty & /*tags*/ 512 && a_href_value !== (a_href_value = "tags/" + /*tag*/ ctx[16])) {
+			if (dirty & /*tags*/ 1024 && a_href_value !== (a_href_value = "tags/" + /*tag*/ ctx[17])) {
 				attr(a, "href", a_href_value);
 			}
 		},
@@ -223,10 +223,10 @@ function create_fragment(ctx) {
 	let img_alt_value;
 	let t2;
 	let span;
-	let raw0_value = /*image*/ ctx[4].citation.replaceAll("<a ", "<a target='blank' rel='noopener noreferrer'") + "";
+	let raw0_value = /*image*/ ctx[5].citation.replaceAll("<a ", "<a target='blank' rel='noopener noreferrer'") + "";
 	let t3;
 	let div2;
-	let h2;
+	let h1;
 	let t4;
 	let t5;
 	let ul;
@@ -234,7 +234,7 @@ function create_fragment(ctx) {
 	let i;
 	let t6;
 	let a;
-	let t7_value = /*author*/ ctx[5].name + "";
+	let t7_value = /*author*/ ctx[6].name + "";
 	let t7;
 	let a_href_value;
 	let t8;
@@ -262,23 +262,23 @@ function create_fragment(ctx) {
 
 	ogp = new Ogp({
 			props: {
-				site_name: /*site_name*/ ctx[11],
-				title: /*title*/ ctx[3],
+				idxContent: /*idxContent*/ ctx[0],
+				title: /*title*/ ctx[4],
 				desc: /*desc*/ ctx[13],
-				image: /*image*/ ctx[4],
-				env: /*env*/ ctx[1],
+				image: /*image*/ ctx[5],
+				env: /*env*/ ctx[2],
 				path: /*path*/ ctx[12]
 			}
 		});
 
-	let each_value_1 = /*categories*/ ctx[8];
+	let each_value_1 = /*categories*/ ctx[9];
 	let each_blocks_1 = [];
 
 	for (let i = 0; i < each_value_1.length; i += 1) {
 		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
 	}
 
-	let each_value = /*tags*/ ctx[9];
+	let each_value = /*tags*/ ctx[10];
 	let each_blocks = [];
 
 	for (let i = 0; i < each_value.length; i += 1) {
@@ -287,8 +287,8 @@ function create_fragment(ctx) {
 
 	aside = new Aside({
 			props: {
-				allPosts: /*allPosts*/ ctx[0],
-				socialLinks: /*socialLinks*/ ctx[10]
+				allPosts: /*allPosts*/ ctx[1],
+				socialLinks: /*socialLinks*/ ctx[11]
 			}
 		});
 
@@ -307,8 +307,8 @@ function create_fragment(ctx) {
 			span = element("span");
 			t3 = space();
 			div2 = element("div");
-			h2 = element("h2");
-			t4 = text(/*title*/ ctx[3]);
+			h1 = element("h1");
+			t4 = text(/*title*/ ctx[4]);
 			t5 = space();
 			ul = element("ul");
 			li0 = element("li");
@@ -319,11 +319,11 @@ function create_fragment(ctx) {
 			t8 = space();
 			li1 = element("li");
 			t9 = text("Created : ");
-			t10 = text(/*dateCreated*/ ctx[6]);
+			t10 = text(/*dateCreated*/ ctx[7]);
 			t11 = space();
 			li2 = element("li");
 			t12 = text("Updated : ");
-			t13 = text(/*dateModified*/ ctx[7]);
+			t13 = text(/*dateModified*/ ctx[8]);
 			t14 = space();
 			li3 = element("li");
 			t15 = text("Categories:\n            ");
@@ -372,10 +372,10 @@ function create_fragment(ctx) {
 			t3 = claim_space(div4_nodes);
 			div2 = claim_element(div4_nodes, "DIV", { class: true });
 			var div2_nodes = children(div2);
-			h2 = claim_element(div2_nodes, "H2", { class: true });
-			var h2_nodes = children(h2);
-			t4 = claim_text(h2_nodes, /*title*/ ctx[3]);
-			h2_nodes.forEach(detach);
+			h1 = claim_element(div2_nodes, "H1", { class: true });
+			var h1_nodes = children(h1);
+			t4 = claim_text(h1_nodes, /*title*/ ctx[4]);
+			h1_nodes.forEach(detach);
 			t5 = claim_space(div2_nodes);
 			ul = claim_element(div2_nodes, "UL", { class: true });
 			var ul_nodes = children(ul);
@@ -393,13 +393,13 @@ function create_fragment(ctx) {
 			li1 = claim_element(ul_nodes, "LI", { class: true });
 			var li1_nodes = children(li1);
 			t9 = claim_text(li1_nodes, "Created : ");
-			t10 = claim_text(li1_nodes, /*dateCreated*/ ctx[6]);
+			t10 = claim_text(li1_nodes, /*dateCreated*/ ctx[7]);
 			li1_nodes.forEach(detach);
 			t11 = claim_space(ul_nodes);
 			li2 = claim_element(ul_nodes, "LI", { class: true });
 			var li2_nodes = children(li2);
 			t12 = claim_text(li2_nodes, "Updated : ");
-			t13 = claim_text(li2_nodes, /*dateModified*/ ctx[7]);
+			t13 = claim_text(li2_nodes, /*dateModified*/ ctx[8]);
 			li2_nodes.forEach(detach);
 			t14 = claim_space(ul_nodes);
 			li3 = claim_element(ul_nodes, "LI", { class: true });
@@ -443,13 +443,13 @@ function create_fragment(ctx) {
 		h() {
 			attr(div0, "class", "w-0 md:w-1/12 xl:w-2/12");
 			attr(img, "class", "rounded-lg overflow-hidden w-full h-screen-70 object-cover object-center");
-			if (img.src !== (img_src_value = "assets/posts/" + /*image*/ ctx[4].src)) attr(img, "src", img_src_value);
-			attr(img, "alt", img_alt_value = /*image*/ ctx[4].alt);
+			if (img.src !== (img_src_value = "assets/posts/" + /*image*/ ctx[5].src)) attr(img, "src", img_src_value);
+			attr(img, "alt", img_alt_value = /*image*/ ctx[5].alt);
 			attr(span, "class", "text-meta");
 			attr(div1, "class", "relative mb-8 w-full");
-			attr(h2, "class", "header mb-2");
+			attr(h1, "class", "header mb-2");
 			attr(i, "class", "las la-user-astronaut text-base relative");
-			attr(a, "href", a_href_value = /*author*/ ctx[5].url);
+			attr(a, "href", a_href_value = /*author*/ ctx[6].url);
 			attr(li0, "class", "px-1 inline-flex");
 			attr(li1, "class", "px-1 inline-flex");
 			attr(li2, "class", "px-1 inline-flex");
@@ -461,7 +461,7 @@ function create_fragment(ctx) {
 			attr(div4, "class", "row flex flex-wrap");
 			attr(div5, "class", "w-full md:w-10/12 xl:w-8/12 px-2 md:px-0");
 			attr(div6, "class", "w-0 md:w-1/12 xl:w-2/12");
-			attr(section, "class", "section flex flex-wrap items-center justify-between py-16");
+			attr(section, "class", "section flex flex-wrap items-center justify-between py-6 sm:py-16");
 		},
 		m(target, anchor) {
 			insert(target, section, anchor);
@@ -478,8 +478,8 @@ function create_fragment(ctx) {
 			span.innerHTML = raw0_value;
 			append(div4, t3);
 			append(div4, div2);
-			append(div2, h2);
-			append(h2, t4);
+			append(div2, h1);
+			append(h1, t4);
 			append(div2, t5);
 			append(div2, ul);
 			append(ul, li0);
@@ -513,7 +513,7 @@ function create_fragment(ctx) {
 
 			append(div2, t18);
 			append(div2, p);
-			p.innerHTML = /*articleBody*/ ctx[2];
+			p.innerHTML = /*articleBody*/ ctx[3];
 			append(div4, t19);
 			append(div4, div3);
 			mount_component(aside, div3, null);
@@ -523,32 +523,33 @@ function create_fragment(ctx) {
 		},
 		p(ctx, [dirty]) {
 			const ogp_changes = {};
-			if (dirty & /*title*/ 8) ogp_changes.title = /*title*/ ctx[3];
-			if (dirty & /*image*/ 16) ogp_changes.image = /*image*/ ctx[4];
-			if (dirty & /*env*/ 2) ogp_changes.env = /*env*/ ctx[1];
+			if (dirty & /*idxContent*/ 1) ogp_changes.idxContent = /*idxContent*/ ctx[0];
+			if (dirty & /*title*/ 16) ogp_changes.title = /*title*/ ctx[4];
+			if (dirty & /*image*/ 32) ogp_changes.image = /*image*/ ctx[5];
+			if (dirty & /*env*/ 4) ogp_changes.env = /*env*/ ctx[2];
 			ogp.$set(ogp_changes);
 
-			if (!current || dirty & /*image*/ 16 && img.src !== (img_src_value = "assets/posts/" + /*image*/ ctx[4].src)) {
+			if (!current || dirty & /*image*/ 32 && img.src !== (img_src_value = "assets/posts/" + /*image*/ ctx[5].src)) {
 				attr(img, "src", img_src_value);
 			}
 
-			if (!current || dirty & /*image*/ 16 && img_alt_value !== (img_alt_value = /*image*/ ctx[4].alt)) {
+			if (!current || dirty & /*image*/ 32 && img_alt_value !== (img_alt_value = /*image*/ ctx[5].alt)) {
 				attr(img, "alt", img_alt_value);
 			}
 
-			if ((!current || dirty & /*image*/ 16) && raw0_value !== (raw0_value = /*image*/ ctx[4].citation.replaceAll("<a ", "<a target='blank' rel='noopener noreferrer'") + "")) span.innerHTML = raw0_value;;
-			if (!current || dirty & /*title*/ 8) set_data(t4, /*title*/ ctx[3]);
-			if ((!current || dirty & /*author*/ 32) && t7_value !== (t7_value = /*author*/ ctx[5].name + "")) set_data(t7, t7_value);
+			if ((!current || dirty & /*image*/ 32) && raw0_value !== (raw0_value = /*image*/ ctx[5].citation.replaceAll("<a ", "<a target='blank' rel='noopener noreferrer'") + "")) span.innerHTML = raw0_value;;
+			if (!current || dirty & /*title*/ 16) set_data(t4, /*title*/ ctx[4]);
+			if ((!current || dirty & /*author*/ 64) && t7_value !== (t7_value = /*author*/ ctx[6].name + "")) set_data(t7, t7_value);
 
-			if (!current || dirty & /*author*/ 32 && a_href_value !== (a_href_value = /*author*/ ctx[5].url)) {
+			if (!current || dirty & /*author*/ 64 && a_href_value !== (a_href_value = /*author*/ ctx[6].url)) {
 				attr(a, "href", a_href_value);
 			}
 
-			if (!current || dirty & /*dateCreated*/ 64) set_data(t10, /*dateCreated*/ ctx[6]);
-			if (!current || dirty & /*dateModified*/ 128) set_data(t13, /*dateModified*/ ctx[7]);
+			if (!current || dirty & /*dateCreated*/ 128) set_data(t10, /*dateCreated*/ ctx[7]);
+			if (!current || dirty & /*dateModified*/ 256) set_data(t13, /*dateModified*/ ctx[8]);
 
-			if (dirty & /*categories*/ 256) {
-				each_value_1 = /*categories*/ ctx[8];
+			if (dirty & /*categories*/ 512) {
+				each_value_1 = /*categories*/ ctx[9];
 				let i;
 
 				for (i = 0; i < each_value_1.length; i += 1) {
@@ -570,8 +571,8 @@ function create_fragment(ctx) {
 				each_blocks_1.length = each_value_1.length;
 			}
 
-			if (dirty & /*tags*/ 512) {
-				each_value = /*tags*/ ctx[9];
+			if (dirty & /*tags*/ 1024) {
+				each_value = /*tags*/ ctx[10];
 				let i;
 
 				for (i = 0; i < each_value.length; i += 1) {
@@ -593,9 +594,9 @@ function create_fragment(ctx) {
 				each_blocks.length = each_value.length;
 			}
 
-			if (!current || dirty & /*articleBody*/ 4) p.innerHTML = /*articleBody*/ ctx[2];;
+			if (!current || dirty & /*articleBody*/ 8) p.innerHTML = /*articleBody*/ ctx[3];;
 			const aside_changes = {};
-			if (dirty & /*allPosts*/ 1) aside_changes.allPosts = /*allPosts*/ ctx[0];
+			if (dirty & /*allPosts*/ 2) aside_changes.allPosts = /*allPosts*/ ctx[1];
 			aside.$set(aside_changes);
 		},
 		i(local) {
@@ -619,8 +620,6 @@ function create_fragment(ctx) {
 	};
 }
 
-let desc_len = 110;
-
 function instance($$self, $$props, $$invalidate) {
 	let { idxContent } = $$props,
 		{ allPosts } = $$props,
@@ -637,26 +636,32 @@ function instance($$self, $$props, $$invalidate) {
 		{ tags } = $$props;
 
 	let socialLinks = idxContent.socialLinks;
-	let site_name = idxContent.title;
 	let path = content.path;
-	let desc = articleBody.substring(0, Math.min(desc_len, articleBody.substring(0, desc_len).lastIndexOf(" ")));
+
+	// Ogp description length - setting to last word on-or-before 110 characters
+	// let desc_idx = articleBody.match(/<p>/);
+	let desc_start = articleBody.indexOf("<p>");
+
+	let desc_end = desc_start + 110;
+	let desc = articleBody.substring(desc_start, Math.min(desc_end, articleBody.substring(0, desc_end).lastIndexOf(" ")));
 
 	$$self.$$set = $$props => {
-		if ("idxContent" in $$props) $$invalidate(14, idxContent = $$props.idxContent);
-		if ("allPosts" in $$props) $$invalidate(0, allPosts = $$props.allPosts);
-		if ("content" in $$props) $$invalidate(15, content = $$props.content);
-		if ("env" in $$props) $$invalidate(1, env = $$props.env);
-		if ("articleBody" in $$props) $$invalidate(2, articleBody = $$props.articleBody);
-		if ("title" in $$props) $$invalidate(3, title = $$props.title);
-		if ("image" in $$props) $$invalidate(4, image = $$props.image);
-		if ("author" in $$props) $$invalidate(5, author = $$props.author);
-		if ("dateCreated" in $$props) $$invalidate(6, dateCreated = $$props.dateCreated);
-		if ("dateModified" in $$props) $$invalidate(7, dateModified = $$props.dateModified);
-		if ("categories" in $$props) $$invalidate(8, categories = $$props.categories);
-		if ("tags" in $$props) $$invalidate(9, tags = $$props.tags);
+		if ("idxContent" in $$props) $$invalidate(0, idxContent = $$props.idxContent);
+		if ("allPosts" in $$props) $$invalidate(1, allPosts = $$props.allPosts);
+		if ("content" in $$props) $$invalidate(14, content = $$props.content);
+		if ("env" in $$props) $$invalidate(2, env = $$props.env);
+		if ("articleBody" in $$props) $$invalidate(3, articleBody = $$props.articleBody);
+		if ("title" in $$props) $$invalidate(4, title = $$props.title);
+		if ("image" in $$props) $$invalidate(5, image = $$props.image);
+		if ("author" in $$props) $$invalidate(6, author = $$props.author);
+		if ("dateCreated" in $$props) $$invalidate(7, dateCreated = $$props.dateCreated);
+		if ("dateModified" in $$props) $$invalidate(8, dateModified = $$props.dateModified);
+		if ("categories" in $$props) $$invalidate(9, categories = $$props.categories);
+		if ("tags" in $$props) $$invalidate(10, tags = $$props.tags);
 	};
 
 	return [
+		idxContent,
 		allPosts,
 		env,
 		articleBody,
@@ -668,10 +673,8 @@ function instance($$self, $$props, $$invalidate) {
 		categories,
 		tags,
 		socialLinks,
-		site_name,
 		path,
 		desc,
-		idxContent,
 		content
 	];
 }
@@ -681,18 +684,18 @@ class Component extends SvelteComponent {
 		super();
 
 		init(this, options, instance, create_fragment, safe_not_equal, {
-			idxContent: 14,
-			allPosts: 0,
-			content: 15,
-			env: 1,
-			articleBody: 2,
-			title: 3,
-			image: 4,
-			author: 5,
-			dateCreated: 6,
-			dateModified: 7,
-			categories: 8,
-			tags: 9
+			idxContent: 0,
+			allPosts: 1,
+			content: 14,
+			env: 2,
+			articleBody: 3,
+			title: 4,
+			image: 5,
+			author: 6,
+			dateCreated: 7,
+			dateModified: 8,
+			categories: 9,
+			tags: 10
 		});
 	}
 }

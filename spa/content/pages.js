@@ -24,10 +24,10 @@ import {
 	text,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import About from "../components/about.svelte";
-import Contact from "../components/contact.svelte";
+import About from '../components/about.js';
+import Contact from '../components/contact.js';
 
 function create_else_block(ctx) {
 	let div0;
@@ -243,7 +243,7 @@ function create_fragment(ctx) {
 			this.h();
 		},
 		h() {
-			attr(div, "class", "w-full py-16");
+			attr(div, "class", "w-full py-6 sm:py-16");
 		},
 		m(target, anchor) {
 			insert(target, div, anchor);

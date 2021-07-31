@@ -20,10 +20,10 @@ import {
 	text,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import Search from "../components/search.svelte";
-import Social from "../components/social.svelte";
+import Search from '../components/search.js';
+import Social from '../components/social.js';
 
 function create_fragment(ctx) {
 	let aside;

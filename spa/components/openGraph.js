@@ -11,7 +11,7 @@ import {
 	noop,
 	safe_not_equal,
 	space
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
 function create_fragment(ctx) {
 	let meta0;
@@ -69,19 +69,19 @@ function create_fragment(ctx) {
 		},
 		h() {
 			attr(meta0, "property", "og:site_name");
-			attr(meta0, "content", /*site_name*/ ctx[2]);
+			attr(meta0, "content", /*site_name*/ ctx[4]);
 			attr(meta1, "property", "og:title");
-			attr(meta1, "content", /*title*/ ctx[3]);
+			attr(meta1, "content", /*title*/ ctx[1]);
 			attr(meta2, "property", "og:description");
-			attr(meta2, "content", /*desc*/ ctx[4]);
+			attr(meta2, "content", /*desc*/ ctx[2]);
 			attr(meta3, "property", "og:url");
-			attr(meta3, "content", /*post_url*/ ctx[0]);
+			attr(meta3, "content", /*path*/ ctx[3]);
 			attr(meta4, "property", "og:image");
-			attr(meta4, "content", /*image_url*/ ctx[1]);
+			attr(meta4, "content", /*image_url*/ ctx[0]);
 			attr(meta5, "property", "og:type");
 			attr(meta5, "content", "article");
 			attr(meta6, "property", "article:publisher");
-			attr(meta6, "content", /*site_name*/ ctx[2]);
+			attr(meta6, "content", /*site_name*/ ctx[4]);
 			attr(meta7, "property", "article:section");
 			attr(meta7, "content", "Posts");
 		},
@@ -103,28 +103,20 @@ function create_fragment(ctx) {
 			insert(target, meta7, anchor);
 		},
 		p(ctx, [dirty]) {
-			if (dirty & /*site_name*/ 4) {
-				attr(meta0, "content", /*site_name*/ ctx[2]);
+			if (dirty & /*title*/ 2) {
+				attr(meta1, "content", /*title*/ ctx[1]);
 			}
 
-			if (dirty & /*title*/ 8) {
-				attr(meta1, "content", /*title*/ ctx[3]);
+			if (dirty & /*desc*/ 4) {
+				attr(meta2, "content", /*desc*/ ctx[2]);
 			}
 
-			if (dirty & /*desc*/ 16) {
-				attr(meta2, "content", /*desc*/ ctx[4]);
+			if (dirty & /*path*/ 8) {
+				attr(meta3, "content", /*path*/ ctx[3]);
 			}
 
-			if (dirty & /*post_url*/ 1) {
-				attr(meta3, "content", /*post_url*/ ctx[0]);
-			}
-
-			if (dirty & /*image_url*/ 2) {
-				attr(meta4, "content", /*image_url*/ ctx[1]);
-			}
-
-			if (dirty & /*site_name*/ 4) {
-				attr(meta6, "content", /*site_name*/ ctx[2]);
+			if (dirty & /*image_url*/ 1) {
+				attr(meta4, "content", /*image_url*/ ctx[0]);
 			}
 		},
 		i: noop,
@@ -150,35 +142,31 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
-	let { site_name } = $$props,
-		{ title } = $$props,
+	let { idxContent } = $$props, { env } = $$props;
+
+	let { title } = $$props,
 		{ desc } = $$props,
 		{ image } = $$props,
-		{ env } = $$props,
 		{ path } = $$props;
 
 	let { post_url } = $$props, { image_url } = $$props;
-
-	if (env.local) {
-		post_url = path;
-		image_url = "assets/" + image.src;
-	} else {
-		post_url = env.baseurl + path;
-		image_url = env.baseurl + "assets/" + image.src;
-	}
+	let site_name = idxContent.title;
+	let site_url = env.local ? "" : idxContent.site;
+	post_url = site_url + env.baseurl + path;
+	image_url = site_url + env.baseurl + "assets/posts/" + image.src;
 
 	$$self.$$set = $$props => {
-		if ("site_name" in $$props) $$invalidate(2, site_name = $$props.site_name);
-		if ("title" in $$props) $$invalidate(3, title = $$props.title);
-		if ("desc" in $$props) $$invalidate(4, desc = $$props.desc);
-		if ("image" in $$props) $$invalidate(5, image = $$props.image);
-		if ("env" in $$props) $$invalidate(6, env = $$props.env);
-		if ("path" in $$props) $$invalidate(7, path = $$props.path);
-		if ("post_url" in $$props) $$invalidate(0, post_url = $$props.post_url);
-		if ("image_url" in $$props) $$invalidate(1, image_url = $$props.image_url);
+		if ("idxContent" in $$props) $$invalidate(6, idxContent = $$props.idxContent);
+		if ("env" in $$props) $$invalidate(7, env = $$props.env);
+		if ("title" in $$props) $$invalidate(1, title = $$props.title);
+		if ("desc" in $$props) $$invalidate(2, desc = $$props.desc);
+		if ("image" in $$props) $$invalidate(8, image = $$props.image);
+		if ("path" in $$props) $$invalidate(3, path = $$props.path);
+		if ("post_url" in $$props) $$invalidate(5, post_url = $$props.post_url);
+		if ("image_url" in $$props) $$invalidate(0, image_url = $$props.image_url);
 	};
 
-	return [post_url, image_url, site_name, title, desc, image, env, path];
+	return [image_url, title, desc, path, site_name, post_url, idxContent, env, image];
 }
 
 class Component extends SvelteComponent {
@@ -186,14 +174,14 @@ class Component extends SvelteComponent {
 		super();
 
 		init(this, options, instance, create_fragment, safe_not_equal, {
-			site_name: 2,
-			title: 3,
-			desc: 4,
-			image: 5,
-			env: 6,
-			path: 7,
-			post_url: 0,
-			image_url: 1
+			idxContent: 6,
+			env: 7,
+			title: 1,
+			desc: 2,
+			image: 8,
+			path: 3,
+			post_url: 5,
+			image_url: 0
 		});
 	}
 }

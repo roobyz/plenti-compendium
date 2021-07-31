@@ -29,10 +29,10 @@ import {
 	text,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import { fade } from "svelte/transition";
-import Hoverable from "./hoverable.svelte";
+import { fade } from '../web_modules/svelte/transition/index.mjs';
+import Hoverable from './hoverable.js';
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
@@ -251,7 +251,8 @@ function create_if_block(ctx) {
 			attr(button, "type", "button");
 			attr(button, "class", "absolute");
 			set_style(button, "bottom", "5%");
-			set_style(button, "left", "47%");
+			set_style(button, "left", "50%");
+			set_style(button, "transform", "translate(-50%)");
 		},
 		m(target, anchor) {
 			insert(target, button, anchor);
@@ -887,7 +888,7 @@ function create_fragment(ctx) {
 }
 
 function scrollDown() {
-	window.scrollTo({ top: 650, left: 0, behavior: "smooth" });
+	window.scrollTo({ top: 800, left: 0, behavior: "smooth" });
 }
 
 function instance($$self, $$props, $$invalidate) {

@@ -18,14 +18,14 @@ import {
 	space,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import Aside from "../components/aside.svelte";
+import Aside from '../components/aside.js';
 
 // Cards component for all posts.
-import Cards from "../components/cards.svelte";
+import Cards from '../components/cards.js';
 
-import Pagination from "../components/paginate.svelte";
+import Pagination from '../components/paginate.js';
 
 function create_fragment(ctx) {
 	let section;
@@ -111,7 +111,7 @@ function create_fragment(ctx) {
 			attr(div2, "class", "w-full md:w-9/12 mb-5 mb-lg-0 px-0");
 			attr(div3, "class", "w-full md:w-3/12 mb-5 mb-lg-0 px-0");
 			attr(div4, "class", "row md:flex md:flex-wrap");
-			attr(section, "class", "mt-16");
+			attr(section, "class", "mt-6 sm:mt-16");
 		},
 		m(target, anchor) {
 			insert(target, section, anchor);

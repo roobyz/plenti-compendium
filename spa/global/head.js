@@ -16,33 +16,10 @@ import {
 	set_data,
 	space,
 	text
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
 function create_if_block_2(ctx) {
-	let script;
-	let script_src_value;
-
-	return {
-		c() {
-			script = element("script");
-			this.h();
-		},
-		l(nodes) {
-			script = claim_element(nodes, "SCRIPT", { src: true });
-			var script_nodes = children(script);
-			script_nodes.forEach(detach);
-			this.h();
-		},
-		h() {
-			if (script.src !== (script_src_value = "assets/smtp.js")) attr(script, "src", script_src_value);
-		},
-		m(target, anchor) {
-			insert(target, script, anchor);
-		},
-		d(detaching) {
-			if (detaching) detach(script);
-		}
-	};
+	return { c: noop, l: noop, m: noop, d: noop };
 }
 
 // (37:2) {#if idxContent.theme.codeHighlighting}
@@ -250,7 +227,7 @@ function create_fragment(ctx) {
 			attr(meta8, "content", meta8_content_value = /*idxContent*/ ctx[0].description);
 			attr(base_1, "href", /*base*/ ctx[1]);
 			attr(script, "type", "module");
-			if (script.src !== (script_src_value = "/spa/ejected/main.js")) attr(script, "src", script_src_value);
+			if (script.src !== (script_src_value = "spa/ejected/main.js")) attr(script, "src", script_src_value);
 			attr(link0, "rel", "icon");
 			attr(link0, "type", "image/svg+xml");
 			attr(link0, "href", "assets/logo.svg");

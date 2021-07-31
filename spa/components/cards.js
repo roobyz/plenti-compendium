@@ -20,7 +20,7 @@ import {
 	set_data,
 	space,
 	text
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
 function get_each_context(ctx, list, i) {
 	const child_ctx = ctx.slice();
@@ -84,7 +84,7 @@ function create_if_block(ctx) {
 	let t15;
 	let p0;
 	let html_tag;
-	let raw_value = /*post*/ ctx[3].fields.articleBody.substring(0, Math.min(175, /*post*/ ctx[3].fields.articleBody.substring(0, 175).lastIndexOf(" "))) + "";
+	let raw_value = /*post*/ ctx[3].fields.articleBody.substring(/*post*/ ctx[3].fields.articleBody.indexOf("<p>"), Math.min(/*post*/ ctx[3].fields.articleBody.indexOf("<p>") + 175, /*post*/ ctx[3].fields.articleBody.substring(0, /*post*/ ctx[3].fields.articleBody.indexOf("<p>") + 175).lastIndexOf(" "))) + "";
 	let t16;
 	let span;
 	let t17;
@@ -261,7 +261,7 @@ function create_if_block(ctx) {
 			if (img.src !== (img_src_value = "assets/posts/" + /*post*/ ctx[3].fields.image.src)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*post*/ ctx[3].fields.image.alt);
 			attr(a0, "href", a0_href_value = /*post*/ ctx[3].path);
-			attr(h3, "class", "header mb-2");
+			attr(h3, "class", "header mb-2 text-base md:text-lg lg:text-xl");
 			attr(i, "class", "las la-user-astronaut text-base");
 			attr(a1, "href", a1_href_value = /*post*/ ctx[3].fields.author.url);
 			attr(li0, "class", "px-1 inline-flex");
@@ -405,7 +405,7 @@ function create_if_block(ctx) {
 				each_blocks.length = each_value_1.length;
 			}
 
-			if (dirty & /*allPosts*/ 1 && raw_value !== (raw_value = /*post*/ ctx[3].fields.articleBody.substring(0, Math.min(175, /*post*/ ctx[3].fields.articleBody.substring(0, 175).lastIndexOf(" "))) + "")) html_tag.p(raw_value);
+			if (dirty & /*allPosts*/ 1 && raw_value !== (raw_value = /*post*/ ctx[3].fields.articleBody.substring(/*post*/ ctx[3].fields.articleBody.indexOf("<p>"), Math.min(/*post*/ ctx[3].fields.articleBody.indexOf("<p>") + 175, /*post*/ ctx[3].fields.articleBody.substring(0, /*post*/ ctx[3].fields.articleBody.indexOf("<p>") + 175).lastIndexOf(" "))) + "")) html_tag.p(raw_value);
 
 			if (dirty & /*allPosts*/ 1 && a2_href_value !== (a2_href_value = /*post*/ ctx[3].path)) {
 				attr(a2, "href", a2_href_value);

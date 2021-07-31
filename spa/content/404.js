@@ -17,7 +17,38 @@ import {
 	set_style,
 	space,
 	text
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
+
+function create_if_block(ctx) {
+	let span;
+	let raw_value = /*image*/ ctx[2].citation + "";
+
+	return {
+		c() {
+			span = element("span");
+			this.h();
+		},
+		l(nodes) {
+			span = claim_element(nodes, "SPAN", { class: true });
+			var span_nodes = children(span);
+			span_nodes.forEach(detach);
+			this.h();
+		},
+		h() {
+			attr(span, "class", "text-meta");
+		},
+		m(target, anchor) {
+			insert(target, span, anchor);
+			span.innerHTML = raw_value;
+		},
+		p(ctx, dirty) {
+			if (dirty & /*image*/ 4 && raw_value !== (raw_value = /*image*/ ctx[2].citation + "")) span.innerHTML = raw_value;;
+		},
+		d(detaching) {
+			if (detaching) detach(span);
+		}
+	};
+}
 
 function create_fragment(ctx) {
 	let section;
@@ -33,17 +64,16 @@ function create_fragment(ctx) {
 	let h2;
 	let i0;
 	let t2;
-	let span0;
+	let span;
 	let t3;
 	let t4;
 	let div1;
 	let i1;
 	let t5;
 	let t6;
-	let span1;
-	let raw_value = /*image*/ ctx[2].citation + "";
 	let t7;
 	let div5;
+	let if_block = /*citation*/ ctx[3] && create_if_block(ctx);
 
 	return {
 		c() {
@@ -58,14 +88,14 @@ function create_fragment(ctx) {
 			h2 = element("h2");
 			i0 = element("i");
 			t2 = space();
-			span0 = element("span");
+			span = element("span");
 			t3 = text(/*title*/ ctx[0]);
 			t4 = space();
 			div1 = element("div");
 			i1 = element("i");
 			t5 = text(/*articleBody*/ ctx[1]);
 			t6 = space();
-			span1 = element("span");
+			if (if_block) if_block.c();
 			t7 = space();
 			div5 = element("div");
 			this.h();
@@ -96,10 +126,10 @@ function create_fragment(ctx) {
 			i0 = claim_element(h2_nodes, "I", { class: true });
 			children(i0).forEach(detach);
 			t2 = claim_space(h2_nodes);
-			span0 = claim_element(h2_nodes, "SPAN", { class: true });
-			var span0_nodes = children(span0);
-			t3 = claim_text(span0_nodes, /*title*/ ctx[0]);
-			span0_nodes.forEach(detach);
+			span = claim_element(h2_nodes, "SPAN", { class: true });
+			var span_nodes = children(span);
+			t3 = claim_text(span_nodes, /*title*/ ctx[0]);
+			span_nodes.forEach(detach);
 			h2_nodes.forEach(detach);
 			t4 = claim_space(div2_nodes);
 			div1 = claim_element(div2_nodes, "DIV", { class: true });
@@ -111,9 +141,7 @@ function create_fragment(ctx) {
 			div1_nodes.forEach(detach);
 			div2_nodes.forEach(detach);
 			t6 = claim_space(div3_nodes);
-			span1 = claim_element(div3_nodes, "SPAN", { class: true });
-			var span1_nodes = children(span1);
-			span1_nodes.forEach(detach);
+			if (if_block) if_block.l(div3_nodes);
 			div3_nodes.forEach(detach);
 			div4_nodes.forEach(detach);
 			t7 = claim_space(section_nodes);
@@ -129,17 +157,16 @@ function create_fragment(ctx) {
 			if (img.src !== (img_src_value = "assets/pages/" + /*image*/ ctx[2].src)) attr(img, "src", img_src_value);
 			attr(img, "alt", img_alt_value = /*image*/ ctx[2].alt);
 			attr(i0, "class", "text-2xl md:text-3xl lg:text-4xl accent las la-directions");
-			attr(span0, "class", "text-base md:text-xl lg:text-2xl text-white");
+			attr(span, "class", "text-base md:text-xl lg:text-2xl text-white");
 			attr(h2, "class", "header");
 			attr(i1, "class", "text-sm md:text-lg lg:text-xl text-white");
 			attr(div1, "class", "pl-8 md:pl-9 lg:pl-10");
 			attr(div2, "class", "absolute pl-2 md:pl-6");
 			set_style(div2, "bottom", "10%");
-			attr(span1, "class", "text-meta");
 			attr(div3, "class", "w-full relative");
 			attr(div4, "class", "w-full md:w-10/12 xl:w-8/12 px-2 md:px-0");
 			attr(div5, "class", "w-0 md:w-1/12 xl:w-2/12");
-			attr(section, "class", "w-full section flex flex-wrap items-center justify-between py-16");
+			attr(section, "class", "w-full section flex flex-wrap items-center justify-between  py-6 sm:py-16");
 		},
 		m(target, anchor) {
 			insert(target, section, anchor);
@@ -153,15 +180,14 @@ function create_fragment(ctx) {
 			append(div2, h2);
 			append(h2, i0);
 			append(h2, t2);
-			append(h2, span0);
-			append(span0, t3);
+			append(h2, span);
+			append(span, t3);
 			append(div2, t4);
 			append(div2, div1);
 			append(div1, i1);
 			append(i1, t5);
 			append(div3, t6);
-			append(div3, span1);
-			span1.innerHTML = raw_value;
+			if (if_block) if_block.m(div3, null);
 			append(section, t7);
 			append(section, div5);
 		},
@@ -176,18 +202,20 @@ function create_fragment(ctx) {
 
 			if (dirty & /*title*/ 1) set_data(t3, /*title*/ ctx[0]);
 			if (dirty & /*articleBody*/ 2) set_data(t5, /*articleBody*/ ctx[1]);
-			if (dirty & /*image*/ 4 && raw_value !== (raw_value = /*image*/ ctx[2].citation + "")) span1.innerHTML = raw_value;;
+			if (/*citation*/ ctx[3]) if_block.p(ctx, dirty);
 		},
 		i: noop,
 		o: noop,
 		d(detaching) {
 			if (detaching) detach(section);
+			if (if_block) if_block.d();
 		}
 	};
 }
 
 function instance($$self, $$props, $$invalidate) {
 	let { title } = $$props, { articleBody } = $$props, { image } = $$props;
+	let citation = image.citation === undefined ? false : true;
 
 	$$self.$$set = $$props => {
 		if ("title" in $$props) $$invalidate(0, title = $$props.title);
@@ -195,7 +223,7 @@ function instance($$self, $$props, $$invalidate) {
 		if ("image" in $$props) $$invalidate(2, image = $$props.image);
 	};
 
-	return [title, articleBody, image];
+	return [title, articleBody, image, citation];
 }
 
 class Component extends SvelteComponent {

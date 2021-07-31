@@ -21,11 +21,11 @@ import {
 	space,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import Aside from "../components/aside.svelte";
-import Groups from "../components/cardsProjects.svelte";
-import Pagination from "../components/paginate.svelte";
+import Aside from '../components/aside.js';
+import Groups from '../components/cardsProjects.js';
+import Pagination from '../components/paginate.js';
 
 function create_if_block(ctx) {
 	let section;
@@ -136,7 +136,7 @@ function create_if_block(ctx) {
 			attr(div5, "class", "row md:flex md:flex-wrap");
 			attr(div6, "class", "w-full md:w-10/12 xl:w-8/12 px-2 md:px-0");
 			attr(div7, "class", "w-0 md:w-1/12 xl:w-2/12");
-			attr(section, "class", "w-full flex flex-wrap items-center justify-between py-16");
+			attr(section, "class", "w-full flex flex-wrap items-center justify-between  py-6 sm:py-16");
 		},
 		m(target, anchor) {
 			insert(target, section, anchor);

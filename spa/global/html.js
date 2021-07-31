@@ -27,22 +27,22 @@ import {
 	space,
 	transition_in,
 	transition_out
-} from "svelte/internal";
+} from '../web_modules/svelte/internal/index.mjs';
 
-import Head from "./head.svelte";
-import Navbar from "./navbar.svelte";
-import Footer from "./footer.svelte";
+import Head from './head.js';
+import Navbar from './navbar.js';
+import Footer from './footer.js';
 
 function create_fragment(ctx) {
 	let html;
 	let head;
 	let t0;
-	let body;
 	let header;
 	let navbar;
 	let updating_isDark;
 	let header_class_value;
 	let t1;
+	let body;
 	let main;
 	let switch_instance;
 	let main_class_value;
@@ -110,10 +110,10 @@ function create_fragment(ctx) {
 			html = element("html");
 			create_component(head.$$.fragment);
 			t0 = space();
-			body = element("body");
 			header = element("header");
 			create_component(navbar.$$.fragment);
 			t1 = space();
+			body = element("body");
 			main = element("main");
 			if (switch_instance) create_component(switch_instance.$$.fragment);
 			t2 = space();
@@ -126,23 +126,23 @@ function create_fragment(ctx) {
 			var html_nodes = children(html);
 			claim_component(head.$$.fragment, html_nodes);
 			t0 = claim_space(html_nodes);
-			body = claim_element(html_nodes, "BODY", {});
-			var body_nodes = children(body);
-			header = claim_element(body_nodes, "HEADER", { class: true, style: true });
+			header = claim_element(html_nodes, "HEADER", { class: true, style: true });
 			var header_nodes = children(header);
 			claim_component(navbar.$$.fragment, header_nodes);
 			header_nodes.forEach(detach);
-			t1 = claim_space(body_nodes);
+			t1 = claim_space(html_nodes);
+			body = claim_element(html_nodes, "BODY", {});
+			var body_nodes = children(body);
 			main = claim_element(body_nodes, "MAIN", { class: true });
 			var main_nodes = children(main);
 			if (switch_instance) claim_component(switch_instance.$$.fragment, main_nodes);
 			main_nodes.forEach(detach);
-			t2 = claim_space(body_nodes);
-			footer1 = claim_element(body_nodes, "FOOTER", { class: true });
+			body_nodes.forEach(detach);
+			t2 = claim_space(html_nodes);
+			footer1 = claim_element(html_nodes, "FOOTER", { class: true });
 			var footer1_nodes = children(footer1);
 			claim_component(footer0.$$.fragment, footer1_nodes);
 			footer1_nodes.forEach(detach);
-			body_nodes.forEach(detach);
 			html_nodes.forEach(detach);
 			this.h();
 		},
@@ -157,18 +157,18 @@ function create_fragment(ctx) {
 			insert(target, html, anchor);
 			mount_component(head, html, null);
 			append(html, t0);
-			append(html, body);
-			append(body, header);
+			append(html, header);
 			mount_component(navbar, header, null);
-			append(body, t1);
+			append(html, t1);
+			append(html, body);
 			append(body, main);
 
 			if (switch_instance) {
 				mount_component(switch_instance, main, null);
 			}
 
-			append(body, t2);
-			append(body, footer1);
+			append(html, t2);
+			append(html, footer1);
 			mount_component(footer0, footer1, null);
 			current = true;
 		},
@@ -274,7 +274,7 @@ function instance($$self, $$props, $$invalidate) {
 		{ env } = $$props;
 
 	let { idxContent = allContent.filter(key => key.path == "/")[0].fields } = $$props;
-	let { allProjs = allContent.filter(key => key.type == "projects") } = $$props;
+	let { allProjs = allContent.filter(key => key.type == "projs") } = $$props;
 	let { allPages = allContent.filter(key => key.type == "pages") } = $$props;
 	let { allPosts = allContent.filter(key => key.type == "posts") } = $$props;
 
